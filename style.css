@@ -1,5 +1,5 @@
 :root {
-    --tile-size: 60px;
+    --tile-size: 50px;
 }
 
 * {
@@ -31,11 +31,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
 }
 
 .square svg {
     width: calc(var(--tile-size) - 10px);
     height: calc(var(--tile-size) - 10px);
+    position: relative;
+    z-index: -10;
+}
+
+path {
+    position: relative;
+    z-index: -11;
+}
+
+.piece {
+    position: relative;
+    z-index: 10;
 }
 
 .white {
@@ -52,5 +65,4 @@
 
 .black-piece {
     fill: black;
-
 }
