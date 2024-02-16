@@ -4,6 +4,9 @@ const infoDisplay = document.querySelector("#infoDisplay");
 
 const width = 8;
 
+let playerTurn = 'white';
+currentTurnDisplay.textContent = playerTurn;
+
 const startPieces = [
     rook,   knight, bishop, queen,  king,   bishop, knight, rook    ,
     pawn,   pawn,   pawn,   pawn,   pawn,   pawn,   pawn,   pawn    ,
@@ -47,10 +50,12 @@ createBoard();
 
 
 
-const allSquares = document.querySelectorAll("#gameboard .square");
+const allStartingSquares = document.querySelectorAll("#gameboard .square");
 
-allSquares.forEach(square => {
+allStartingSquares.forEach(square => {
     square.addEventListener('dragstart', dragStart)
+    square.addEventListener('dragover', dragOver)
+    square.addEventListener('drop', dragDrop)
 })
 
 let startPosition;
@@ -59,4 +64,62 @@ let draggedElement;
 function dragStart (e) {
     startPosition = e.target.parentNode.getAttribute('square-id');
     draggedElement = e.target
+}
+
+function dragOver(e) {
+    e.preventDefault();
+}
+
+function dragDrop(e) {
+    e.stopPropagation()
+    const takenPiece = e.target.classList.contains('piece')
+
+    //replace piece only ???
+    // e.target.parentNode.append(draggedElement)
+    // e.target.remove()
+
+    //move piece to empty tile only ???
+    e.target.append(draggedElement)
+    changePlayer();
+}
+
+function changePlayer() {
+    if (playerTurn === "white") {
+        playerTurn = "black";
+        setTileIdReverse();
+    }  else {
+        playerTurn = "white";
+        setTileIdRegular();
+    }
+    currentTurnDisplay.textContent = playerTurn;
+}
+
+function setTileIdReverse() {
+    const allSquares = document.querySelectorAll(".square");
+    allSquares.forEach((square, i) =>
+        square.setAttribute('square-id', (Math.pow(width, 2) - 1) - i))
+    setTileRotationReverse()
+}
+
+function setTileIdRegular() {
+    const allSquares = document.querySelectorAll(".square");
+    allSquares.forEach((square, i) =>
+        square.setAttribute('square-id', i));
+    setTileRotationRegular()
+}
+
+function setTileRotationReverse() {
+    const allPieces = document.querySelectorAll("svg");
+    gameboard.style.transform = 'rotate(180deg)';
+    allPieces.forEach(piece => {
+        piece.style.transform = 'rotate(180deg)';
+    })
+}
+
+function setTileRotationRegular() {
+    const allPieces = document.querySelectorAll("svg");
+    gameboard.style.transform = 'rotate(0deg)';
+    allPieces.forEach(piece => {
+        piece.style.transform = 'rotate(0deg)';
+    })
 }
