@@ -1,0 +1,56 @@
+:root {
+    --tile-size: 60px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.game-container {
+
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameboard {
+    width: calc(var(--tile-size)*8);
+    height: calc(var(--tile-size)*8);
+    background-color: black;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square {
+    width: var(--tile-size);;
+    height: var(--tile-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.square svg {
+    width: calc(var(--tile-size) - 10px);
+    height: calc(var(--tile-size) - 10px);
+}
+
+.white {
+    background-color: #888888;
+}
+
+.black {
+    background-color: #525a8f;
+}
+
+.white-piece {
+    fill: white;
+}
+
+.black-piece {
+    fill: black;
+
+}
