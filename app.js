@@ -109,7 +109,7 @@ function setTileIdRegular() {
 }
 
 function setTileRotationReverse() {
-    const allPieces = document.querySelectorAll("svg");
+    const allPieces = document.querySelectorAll(".square");
     gameboard.style.transform = 'rotate(180deg)';
     allPieces.forEach(piece => {
         piece.style.transform = 'rotate(180deg)';
@@ -117,7 +117,7 @@ function setTileRotationReverse() {
 }
 
 function setTileRotationRegular() {
-    const allPieces = document.querySelectorAll("svg");
+    const allPieces = document.querySelectorAll(".square");
     gameboard.style.transform = 'rotate(0deg)';
     allPieces.forEach(piece => {
         piece.style.transform = 'rotate(0deg)';
