@@ -20,7 +20,7 @@
 #gameboard {
     width: calc(var(--tile-size)*8);
     height: calc(var(--tile-size)*8);
-    background-color: black;
+    background-color: #888888;
     display: flex;
     flex-wrap: wrap;
 }

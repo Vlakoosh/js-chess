@@ -49,7 +49,6 @@ createBoard();
 
 
 
-
 const allStartingSquares = document.querySelectorAll("#gameboard .square");
 
 allStartingSquares.forEach(square => {
@@ -74,6 +73,7 @@ function dragDrop(e) {
     e.stopPropagation()
     const takenPiece = e.target.classList.contains('piece')
 
+    //TODO needs a fix
     //replace piece only ???
     // e.target.parentNode.append(draggedElement)
     // e.target.remove()
