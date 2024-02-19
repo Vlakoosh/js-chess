@@ -5,6 +5,7 @@ const infoDisplay = document.querySelector("#infoDisplay");
 const width = 8;
 
 let playerTurn = 'white';
+let turnSwitchDelay = 1000;
 currentTurnDisplay.textContent = playerTurn;
 
 const startPieces = [
@@ -72,15 +73,18 @@ function dragOver(e) {
 function dragDrop(e) {
     e.stopPropagation()
     const takenPiece = e.target.classList.contains('piece')
+    console.log(e.target)
 
-    //TODO needs a fix
-    //replace piece only ???
-    // e.target.parentNode.append(draggedElement)
-    // e.target.remove()
-
-    //move piece to empty tile only ???
-    e.target.append(draggedElement)
-    changePlayer();
+    if (e.target !== draggedElement){
+        if (e.target.classList.contains("piece")) {
+            e.target.parentNode.append(draggedElement)
+            e.target.remove()
+        }
+        else {
+            e.target.append(draggedElement)
+        }
+        setTimeout(changePlayer, turnSwitchDelay);
+    }
 }
 
 function changePlayer() {
