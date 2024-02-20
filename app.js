@@ -48,8 +48,6 @@ function createBoard() {
 
 createBoard();
 
-
-
 const allStartingSquares = document.querySelectorAll("#gameboard .square");
 
 allStartingSquares.forEach(square => {
